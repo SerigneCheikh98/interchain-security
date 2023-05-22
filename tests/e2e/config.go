@@ -319,6 +319,51 @@ func MultiConsumerTestRun() TestRun {
 	}
 }
 
+func SovereignToConsumerTestRun() TestRun {
+	return TestRun{
+		name: "sovereign-to-consumer",
+		containerConfig: ContainerConfig{
+			containerName: "interchain-security-sovtoc-container",
+			instanceName:  "interchain-security-sovtoc-instance",
+			ccvVersion:    "1",
+			now:           time.Now(),
+		},
+		validatorConfigs: getDefaultValidators(),
+		chainConfigs: map[chainID]ChainConfig{
+			chainID("provi"): {
+				chainId:        chainID("provi"),
+				binaryName:     "interchain-security-pd",
+				ipPrefix:       "7.7.7",
+				votingWaitTime: 20,
+				genesisChanges: ".app_state.gov.voting_params.voting_period = \"20s\" | " +
+					// Custom slashing parameters for testing validator downtime functionality
+					// See https://docs.cosmos.network/main/modules/slashing/04_begin_block.html#uptime-tracking
+					".app_state.slashing.params.signed_blocks_window = \"2\" | " +
+					".app_state.slashing.params.min_signed_per_window = \"0.500000000000000000\" | " +
+					".app_state.slashing.params.downtime_jail_duration = \"2s\" | " +
+					".app_state.slashing.params.slash_fraction_downtime = \"0.010000000000000000\" | " +
+					".app_state.provider.params.slash_meter_replenish_fraction = \"1.0\"", // This disables slash packet throttling
+			},
+			chainID("sove"): {
+				chainId:        chainID("sove"),
+				binaryName:     "interchain-security-sd",
+				ipPrefix:       "7.7.8",
+				votingWaitTime: 20,
+				genesisChanges: ".app_state.gov.voting_params.voting_period = \"20s\" | " +
+					// Custom slashing parameters for testing validator downtime functionality
+					// See https://docs.cosmos.network/main/modules/slashing/04_begin_block.html#uptime-tracking
+					".app_state.slashing.params.signed_blocks_window = \"2\" | " +
+					".app_state.slashing.params.min_signed_per_window = \"0.500000000000000000\" | " +
+					".app_state.slashing.params.downtime_jail_duration = \"2s\" | " +
+					".app_state.slashing.params.slash_fraction_downtime = \"0.010000000000000000\" | " +
+					".app_state.provider.params.slash_meter_replenish_fraction = \"1.0\"", // This disables slash packet throttling
+			},
+		},
+		tendermintConfigOverride: `s/timeout_commit = "5s"/timeout_commit = "3s"/;` +
+			`s/peer_gossip_sleep_duration = "100ms"/peer_gossip_sleep_duration = "100ms"/;`,
+	}
+}
+
 func (s *TestRun) SetDockerConfig(localSdkPath string, useGaia bool, gaiaTag string) {
 	if localSdkPath != "" {
 		fmt.Println("USING LOCAL SDK", localSdkPath)
