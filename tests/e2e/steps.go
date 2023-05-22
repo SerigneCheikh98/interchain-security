@@ -14,7 +14,7 @@ func concatSteps(steps ...[]Step) []Step {
 }
 
 var happyPathSteps = concatSteps(
-	stepsStartChains([]string{"consu"}, false),
+	stepsStartChains("provi", []string{"consu"}, false),
 	stepsDelegate("consu"),
 	stepsAssignConsumerKeyOnStartedChain("consu", "bob"),
 	stepsUnbond("consu"),
@@ -31,7 +31,7 @@ var happyPathSteps = concatSteps(
 )
 
 var slashThrottleSteps = concatSteps(
-	stepsStartChains([]string{"consu"}, false),
+	stepsStartChains("provi", []string{"consu"}, false),
 	stepsDelegate("consu"),
 	stepsThrottledDowntime("consu"),
 	stepsStopChain("consu", 2),
@@ -39,18 +39,22 @@ var slashThrottleSteps = concatSteps(
 
 var democracySteps = concatSteps(
 	// democracySteps requires a transfer channel
-	stepsStartChains([]string{"democ"}, true),
+	stepsStartChains("provi", []string{"democ"}, true),
 	// delegation needs to happen so the first VSC packet can be delivered
 	stepsDelegate("democ"),
 	stepsDemocracy("democ"),
 )
 
 var multipleConsumers = concatSteps(
-	stepsStartChains([]string{"consu", "densu"}, false),
+	stepsStartChains("provi", []string{"consu", "densu"}, false),
 	stepsMultiConsumerDelegate("consu", "densu"),
 	stepsMultiConsumerUnbond("consu", "densu"),
 	stepsMultiConsumerRedelegate("consu", "densu"),
 	stepsMultiConsumerDowntimeFromConsumer("consu", "densu"),
 	stepsMultiConsumerDowntimeFromProvider("consu", "densu"),
 	stepsMultiConsumerDoubleSign("consu", "densu"), // double sign on one of the chains
+)
+
+var sovereignToConsumerSteps = concatSteps(
+	stepStartSovereignChain("sove"),
 )

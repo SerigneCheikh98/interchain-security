@@ -4,11 +4,11 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 )
 
-func stepStartProviderChain() []Step {
+func stepStartSovereignChain(chainName string) []Step {
 	return []Step{
 		{
 			action: StartChainAction{
-				chain: chainID("provi"),
+				chain: chainID(chainName),
 				validators: []StartChainValidator{
 					{id: validatorID("bob"), stake: 500000000, allocation: 10000000000},
 					{id: validatorID("alice"), stake: 500000000, allocation: 10000000000},
@@ -16,7 +16,7 @@ func stepStartProviderChain() []Step {
 				},
 			},
 			state: State{
-				chainID("provi"): ChainState{
+				chainID(chainName): ChainState{
 					ValBalances: &map[validatorID]uint{
 						validatorID("alice"): 9500000000,
 						validatorID("bob"):   9500000000,
@@ -28,11 +28,11 @@ func stepStartProviderChain() []Step {
 	}
 }
 
-func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint, setupTransferChans bool) []Step {
+func stepsStartConsumerChain(providerName, consumerName string, proposalIndex, chainIndex uint, setupTransferChans bool) []Step {
 	s := []Step{
 		{
 			action: submitConsumerAdditionProposalAction{
-				chain:         chainID("provi"),
+				chain:         chainID(providerName),
 				from:          validatorID("alice"),
 				deposit:       10000001,
 				consumerChain: chainID(consumerName),
@@ -40,7 +40,7 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 				initialHeight: clienttypes.Height{RevisionNumber: 0, RevisionHeight: 1},
 			},
 			state: State{
-				chainID("provi"): ChainState{
+				chainID(providerName): ChainState{
 					ValBalances: &map[validatorID]uint{
 						validatorID("alice"): 9489999999,
 						validatorID("bob"):   9500000000,
@@ -115,13 +115,13 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 		},
 		{
 			action: voteGovProposalAction{
-				chain:      chainID("provi"),
+				chain:      chainID(providerName),
 				from:       []validatorID{validatorID("alice"), validatorID("bob"), validatorID("carol")},
 				vote:       []string{"yes", "yes", "yes"},
 				propNumber: proposalIndex,
 			},
 			state: State{
-				chainID("provi"): ChainState{
+				chainID(providerName): ChainState{
 					Proposals: &map[uint]Proposal{
 						proposalIndex: ConsumerAdditionProposal{
 							Deposit:       10000001,
@@ -141,7 +141,7 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 		{
 			action: startConsumerChainAction{
 				consumerChain: chainID(consumerName),
-				providerChain: chainID("provi"),
+				providerChain: chainID(providerName),
 				validators: []StartChainValidator{
 					{id: validatorID("bob"), stake: 500000000, allocation: 10000000000},
 					{id: validatorID("alice"), stake: 500000000, allocation: 10000000000},
@@ -155,7 +155,7 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 				genesisChanges: ".app_state.ccvconsumer.params.soft_opt_out_threshold = \"0.05\"",
 			},
 			state: State{
-				chainID("provi"): ChainState{
+				chainID(providerName): ChainState{
 					ValBalances: &map[validatorID]uint{
 						validatorID("alice"): 9500000000,
 						validatorID("bob"):   9500000000,
@@ -174,7 +174,7 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 		{
 			action: addIbcConnectionAction{
 				chainA:  chainID(consumerName),
-				chainB:  chainID("provi"),
+				chainB:  chainID(providerName),
 				clientA: 0,
 				clientB: chainIndex,
 			},
@@ -183,7 +183,7 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 		{
 			action: addIbcChannelAction{
 				chainA:      chainID(consumerName),
-				chainB:      chainID("provi"),
+				chainB:      chainID(providerName),
 				connectionA: 0,
 				portA:       "consumer", // TODO: check port mapping
 				portB:       "provider",
@@ -198,7 +198,7 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 		s = append(s, Step{
 			action: transferChannelCompleteAction{
 				chainA:      chainID(consumerName),
-				chainB:      chainID("provi"),
+				chainB:      chainID(providerName),
 				connectionA: 0,
 				portA:       "transfer",
 				portB:       "transfer",
@@ -214,10 +214,10 @@ func stepsStartConsumerChain(consumerName string, proposalIndex, chainIndex uint
 
 // starts provider and consumer chains specified in consumerNames
 // setupTransferChans will establish a channel for fee transfers between consumer and provider
-func stepsStartChains(consumerNames []string, setupTransferChans bool) []Step {
-	s := stepStartProviderChain()
+func stepsStartChains(providerName string, consumerNames []string, setupTransferChans bool) []Step {
+	s := stepStartSovereignChain(providerName)
 	for i, consumerName := range consumerNames {
-		s = append(s, stepsStartConsumerChain(consumerName, uint(i+1), uint(i), setupTransferChans)...)
+		s = append(s, stepsStartConsumerChain(providerName, consumerName, uint(i+1), uint(i), setupTransferChans)...)
 	}
 
 	return s
