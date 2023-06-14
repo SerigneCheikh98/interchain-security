@@ -1,0 +1,26 @@
+{
+  "unversionedId": "features/key-assignment",
+  "id": "features/key-assignment",
+  "title": "Key Assignment",
+  "description": "Key Assignment (aka. as key delegation) allows validator operators to use different consensus keys for each consumer chain validator node that they operate.",
+  "source": "@site/docs/features/key-assignment.md",
+  "sourceDirName": "features",
+  "slug": "/features/key-assignment",
+  "permalink": "/interchain-security/features/key-assignment",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Technical Specification",
+    "permalink": "/interchain-security/introduction/technical-specification"
+  },
+  "next": {
+    "title": "Reward distribution",
+    "permalink": "/interchain-security/features/reward-distribution"
+  }
+}

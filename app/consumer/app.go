@@ -70,6 +70,7 @@ import (
 	appparams "github.com/cosmos/interchain-security/app/params"
 	ibctestingcore "github.com/cosmos/interchain-security/legacy_ibc_testing/core"
 	ibctesting "github.com/cosmos/interchain-security/legacy_ibc_testing/testing"
+	//"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/gorilla/mux"
 	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cast"
@@ -83,6 +84,23 @@ import (
 	ibcconsumer "github.com/cosmos/interchain-security/x/ccv/consumer"
 	ibcconsumerkeeper "github.com/cosmos/interchain-security/x/ccv/consumer/keeper"
 	ibcconsumertypes "github.com/cosmos/interchain-security/x/ccv/consumer/types"
+
+	// ------------------------------------------
+	// EVM module
+	srvflags "github.com/evmos/ethermint/server/flags"
+
+	etherminttypes "github.com/evmos/ethermint/types"
+	"github.com/evmos/ethermint/x/evm"
+
+	//"github.com/evmos/ethermint/encoding"
+
+	evmkeeper "github.com/evmos/ethermint/x/evm/keeper"
+	evmtypes "github.com/evmos/ethermint/x/evm/types"
+	//evmvm "github.com/evmos/ethermint/x/evm/vm"
+
+	"github.com/evmos/ethermint/x/feemarket"
+	feemarketkeeper "github.com/evmos/ethermint/x/feemarket/keeper"
+	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 
 	// unnamed import of statik for swagger UI support
 	_ "github.com/cosmos/cosmos-sdk/client/docs/statik"
@@ -117,6 +135,8 @@ var (
 		vesting.AppModuleBasic{},
 		//router.AppModuleBasic{},
 		ibcconsumer.AppModuleBasic{},
+		evm.AppModuleBasic{},
+		feemarket.AppModuleBasic{},
 	)
 
 	// module account permissions
@@ -125,6 +145,7 @@ var (
 		ibcconsumertypes.ConsumerRedistributeName:     nil,
 		ibcconsumertypes.ConsumerToSendToProviderName: nil,
 		ibctransfertypes.ModuleName:                   {authtypes.Minter, authtypes.Burner},
+		evmtypes.ModuleName:							{authtypes.Minter, authtypes.Burner},
 	}
 )
 
@@ -169,6 +190,8 @@ type App struct { // nolint: golint
 	FeeGrantKeeper feegrantkeeper.Keeper
 	AuthzKeeper    authzkeeper.Keeper
 	ConsumerKeeper ibcconsumerkeeper.Keeper
+	EvmKeeper      *evmkeeper.Keeper
+	FeeMarketKeeper feemarketkeeper.Keeper
 
 	// make scoped keepers public for test purposes
 	ScopedIBCKeeper         capabilitykeeper.ScopedKeeper
@@ -190,6 +213,7 @@ func init() {
 	}
 
 	DefaultNodeHome = filepath.Join(userHomeDir, "."+AppName)
+	sdk.DefaultPowerReduction = sdk.NewInt( etherminttypes.PowerReduction.Int64() )
 }
 
 // New returns a reference to an initialized App.
@@ -220,9 +244,9 @@ func New(
 		paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey,
 		capabilitytypes.StoreKey, feegrant.StoreKey, authzkeeper.StoreKey,
-		ibcconsumertypes.StoreKey,
+		ibcconsumertypes.StoreKey, evmtypes.StoreKey, feemarkettypes.StoreKey,
 	)
-	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
+	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey, evmtypes.TransientKey, feemarkettypes.TransientKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
 
 	app := &App{
@@ -265,7 +289,7 @@ func New(
 		appCodec,
 		keys[authtypes.StoreKey],
 		app.GetSubspace(authtypes.ModuleName),
-		authtypes.ProtoBaseAccount,
+		etherminttypes.ProtoAccount,//authtypes.ProtoBaseAccount,
 		maccPerms,
 	)
 
@@ -378,6 +402,44 @@ func New(
 
 	skipGenesisInvariants := cast.ToBool(appOpts.Get(crisis.FlagSkipGenesisInvariants))
 
+	// Create Ethermint keepers
+	tracer := cast.ToString(appOpts.Get(srvflags.EVMTracer))
+
+	// Create Ethermint keepers
+	app.FeeMarketKeeper = feemarketkeeper.NewKeeper(
+		appCodec, 
+		app.GetSubspace(feemarkettypes.ModuleName),
+		//authtypes.NewModuleAddress( ibcconsumertypes.ModuleName),
+		keys[feemarkettypes.StoreKey],
+		tkeys[feemarkettypes.TransientKey],
+		//app.GetSubspace(feemarkettypes.ModuleName),
+	)
+	//var constructor evmvm.Constructor;
+	app.EvmKeeper = evmkeeper.NewKeeper(
+		appCodec, 
+		keys[evmtypes.StoreKey], 
+		tkeys[evmtypes.TransientKey],
+		app.GetSubspace(evmtypes.ModuleName),
+		//authtypes.NewModuleAddress( ibcconsumertypes.ModuleName), 
+		app.AccountKeeper, 
+		app.BankKeeper, 
+		app.ConsumerKeeper, // check
+		app.FeeMarketKeeper,
+	//	vm.PrecompiledContractsHomestead,
+	//	constructor,	// check
+		tracer,
+	//	app.GetSubspace(evmtypes.ModuleName),
+	)
+	/*
+	app.evmKeeper = *app.evmKeeper.SetHooks(
+		evmkeeper.NewMultiEvmHooks(
+			app.Erc20Keeper.Hooks(),
+			app.IncentivesKeeper.Hooks(),
+			app.RevenueKeeper.Hooks(),
+			app.ClaimsKeeper.Hooks(),
+		),
+	)*/
+
 	// NOTE: Any module instantiated in the module manager that is later modified
 	// must be passed by reference here.
 	app.MM = module.NewManager(
@@ -395,6 +457,9 @@ func New(
 		params.NewAppModule(app.ParamsKeeper),
 		transferModule,
 		consumerModule,
+		// Ethermint app modules
+		evm.NewAppModule(app.EvmKeeper, app.AccountKeeper/*, app.GetSubspace(evmtypes.ModuleName)*/),
+		feemarket.NewAppModule(app.FeeMarketKeeper/*, app.GetSubspace(feemarkettypes.ModuleName)*/),
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -406,6 +471,8 @@ func New(
 		// upgrades should be run first
 		upgradetypes.ModuleName,
 		capabilitytypes.ModuleName,
+		feemarkettypes.ModuleName,
+		evmtypes.ModuleName,
 		crisistypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		ibchost.ModuleName,
@@ -421,6 +488,8 @@ func New(
 	)
 	app.MM.SetOrderEndBlockers(
 		crisistypes.ModuleName,
+		evmtypes.ModuleName,
+		feemarkettypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		ibchost.ModuleName,
 		feegrant.ModuleName,
@@ -451,6 +520,8 @@ func New(
 		crisistypes.ModuleName,
 		ibchost.ModuleName,
 		evidencetypes.ModuleName,
+		evmtypes.ModuleName,
+		feemarkettypes.ModuleName,
 		ibctransfertypes.ModuleName,
 		feegrant.ModuleName,
 		authz.ModuleName,
@@ -479,7 +550,8 @@ func New(
 		authzmodule.NewAppModule(appCodec, app.AuthzKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
 		params.NewAppModule(app.ParamsKeeper),
 		evidence.NewAppModule(app.EvidenceKeeper), ibc.NewAppModule(app.IBCKeeper),
-		transferModule,
+		transferModule, evm.NewAppModule(app.EvmKeeper, app.AccountKeeper/*, app.GetSubspace(evmtypes.ModuleName)*/),
+		feemarket.NewAppModule(app.FeeMarketKeeper/*, app.GetSubspace(feemarkettypes.ModuleName)*/),
 	)
 
 	app.sm.RegisterStoreDecoders()
@@ -489,6 +561,7 @@ func New(
 	app.MountTransientStores(tkeys)
 	app.MountMemoryStores(memKeys)
 
+	//maxGasWanted := cast.ToUint64(appOpts.Get(srvflags.EVMMaxTxGasWanted))
 	anteHandler, err := NewAnteHandler(
 		HandlerOptions{
 			HandlerOptions: ante.HandlerOptions{
@@ -500,6 +573,8 @@ func New(
 			},
 			IBCKeeper:      app.IBCKeeper,
 			ConsumerKeeper: app.ConsumerKeeper,
+			//EvmKeeper:       app.EvmKeeper,
+			//MaxTxGasWanted:  maxGasWanted,
 		},
 	)
 	if err != nil {
@@ -764,7 +839,10 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibctransfertypes.ModuleName)
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(ibcconsumertypes.ModuleName)
-
+	// ethermint subspaces
+	//paramsKeeper.Subspace(evmtypes.ModuleName).WithKeyTable(evmtypes.ParamKeyTable()) //nolint: staticcheck
+	paramsKeeper.Subspace(evmtypes.ModuleName)
+	paramsKeeper.Subspace(feemarkettypes.ModuleName)
 	return paramsKeeper
 }
 

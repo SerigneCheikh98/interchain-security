@@ -1,0 +1,27 @@
+{
+  "unversionedId": "adrs/adr-001-key-assignment",
+  "id": "adrs/adr-001-key-assignment",
+  "title": "Key Assignment",
+  "description": "Changelog",
+  "source": "@site/docs/adrs/adr-001-key-assignment.md",
+  "sourceDirName": "adrs",
+  "slug": "/adrs/adr-001-key-assignment",
+  "permalink": "/interchain-security/adrs/adr-001-key-assignment",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Key Assignment"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ADR Template",
+    "permalink": "/interchain-security/adrs/adr-template"
+  },
+  "next": {
+    "title": "Jail Throttling",
+    "permalink": "/interchain-security/adrs/adr-002-throttle"
+  }
+}

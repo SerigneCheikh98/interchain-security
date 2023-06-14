@@ -1,0 +1,26 @@
+{
+  "unversionedId": "consumer-development/consumer-chain-governance",
+  "id": "consumer-development/consumer-chain-governance",
+  "title": "Consumer Chain Governance",
+  "description": "Different consumer chains can do governance in different ways. However, no matter what the governance method is, there are a few settings specifically related to consensus that consumer chain governance cannot change. We'll cover what these are in the \"Whitelist\" section below.",
+  "source": "@site/docs/consumer-development/consumer-chain-governance.md",
+  "sourceDirName": "consumer-development",
+  "slug": "/consumer-development/consumer-chain-governance",
+  "permalink": "/interchain-security/consumer-development/consumer-chain-governance",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Developing an ICS consumer chain",
+    "permalink": "/interchain-security/consumer-development/app-integration"
+  },
+  "next": {
+    "title": "Upgrading Consumer Chains",
+    "permalink": "/interchain-security/consumer-development/consumer-chain-upgrade-procedure"
+  }
+}

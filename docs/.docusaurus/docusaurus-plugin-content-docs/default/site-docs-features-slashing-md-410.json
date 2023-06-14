@@ -1,0 +1,26 @@
+{
+  "unversionedId": "features/slashing",
+  "id": "features/slashing",
+  "title": "Consumer Initiated Slashing",
+  "description": "A consumer chain is essentially a regular Cosmos-SDK based chain that uses the interchain security module to achieve economic security by stake deposited on the provider chain, instead of it's own chain.",
+  "source": "@site/docs/features/slashing.md",
+  "sourceDirName": "features",
+  "slug": "/features/slashing",
+  "permalink": "/interchain-security/features/slashing",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ICS Provider Proposals",
+    "permalink": "/interchain-security/features/proposals"
+  },
+  "next": {
+    "title": "Developing an ICS consumer chain",
+    "permalink": "/interchain-security/consumer-development/app-integration"
+  }
+}

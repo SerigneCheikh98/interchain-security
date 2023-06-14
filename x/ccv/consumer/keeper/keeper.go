@@ -20,6 +20,8 @@ import (
 	consumertypes "github.com/cosmos/interchain-security/x/ccv/consumer/types"
 	ccv "github.com/cosmos/interchain-security/x/ccv/types"
 	"github.com/tendermint/tendermint/libs/log"
+
+	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 )
 
 // Keeper defines the Cross-Chain Validation Consumer Keeper
@@ -497,4 +499,8 @@ func (k Keeper) AppendPendingPacket(ctx sdk.Context, packet ...ccv.ConsumerPacke
 	pending := k.GetPendingPackets(ctx)
 	list := append(pending.GetList(), packet...)
 	k.SetPendingPackets(ctx, ccv.ConsumerPacketDataList{List: list})
+}
+
+func (k Keeper) GetValidatorByConsAddr(ctx sdk.Context, consAddr sdk.ConsAddress) (validator stakingtypes.Validator, found bool){
+	return;
 }

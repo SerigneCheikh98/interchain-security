@@ -1,0 +1,27 @@
+{
+  "unversionedId": "validators/joining-testnet",
+  "id": "validators/joining-testnet",
+  "title": "Joining Replicated Security testnet",
+  "description": "This short guide will teach you how to join the Replicated Security testnet.",
+  "source": "@site/docs/validators/joining-testnet.md",
+  "sourceDirName": "validators",
+  "slug": "/validators/joining-testnet",
+  "permalink": "/interchain-security/validators/joining-testnet",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Joining Replicated Security testnet"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/interchain-security/validators/overview"
+  },
+  "next": {
+    "title": "Withdrawing consumer chain validator rewards",
+    "permalink": "/interchain-security/validators/withdraw_rewards"
+  }
+}

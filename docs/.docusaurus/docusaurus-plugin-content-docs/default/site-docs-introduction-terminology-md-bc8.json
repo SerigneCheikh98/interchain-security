@@ -1,0 +1,26 @@
+{
+  "unversionedId": "introduction/terminology",
+  "id": "introduction/terminology",
+  "title": "Terminology",
+  "description": "You may have heard of one or multiple buzzwords thrown around in the cosmos and wider crypto ecosystem such shared security, interchain security, replicated security, cross chain validation, and mesh security. These terms will be clarified below, before diving into any introductions.",
+  "source": "@site/docs/introduction/terminology.md",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/terminology",
+  "permalink": "/interchain-security/introduction/terminology",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/interchain-security/introduction/overview"
+  },
+  "next": {
+    "title": "Interchain Security Parameters",
+    "permalink": "/interchain-security/introduction/params"
+  }
+}

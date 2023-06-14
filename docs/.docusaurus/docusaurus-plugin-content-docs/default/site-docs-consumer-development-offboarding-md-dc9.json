@@ -1,0 +1,27 @@
+{
+  "unversionedId": "consumer-development/offboarding",
+  "id": "consumer-development/offboarding",
+  "title": "Offboarding Checklist",
+  "description": "To offboard a consumer chain simply submit a ConsumerRemovalProposal governance proposal listing a stop_time. After stop time passes, the provider chain will remove the chain from the ICS protocol (it will stop sending validator set updates).",
+  "source": "@site/docs/consumer-development/offboarding.md",
+  "sourceDirName": "consumer-development",
+  "slug": "/consumer-development/offboarding",
+  "permalink": "/interchain-security/consumer-development/offboarding",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "Offboarding Checklist"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Onboarding Checklist",
+    "permalink": "/interchain-security/consumer-development/onboarding"
+  },
+  "next": {
+    "title": "Overview",
+    "permalink": "/interchain-security/validators/overview"
+  }
+}

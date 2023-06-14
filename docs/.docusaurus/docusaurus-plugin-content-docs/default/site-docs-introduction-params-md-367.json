@@ -1,0 +1,26 @@
+{
+  "unversionedId": "introduction/params",
+  "id": "introduction/params",
+  "title": "Interchain Security Parameters",
+  "description": "The parameters necessary for Interchain Security (ICS) are defined in",
+  "source": "@site/docs/introduction/params.md",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/params",
+  "permalink": "/interchain-security/introduction/params",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Terminology",
+    "permalink": "/interchain-security/introduction/terminology"
+  },
+  "next": {
+    "title": "Technical Specification",
+    "permalink": "/interchain-security/introduction/technical-specification"
+  }
+}

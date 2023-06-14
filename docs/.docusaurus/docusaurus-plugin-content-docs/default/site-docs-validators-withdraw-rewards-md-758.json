@@ -1,0 +1,23 @@
+{
+  "unversionedId": "validators/withdraw_rewards",
+  "id": "validators/withdraw_rewards",
+  "title": "Withdrawing consumer chain validator rewards",
+  "description": "Here are example steps for withdrawing rewards from consumer chains in the provider chain",
+  "source": "@site/docs/validators/withdraw_rewards.md",
+  "sourceDirName": "validators",
+  "slug": "/validators/withdraw_rewards",
+  "permalink": "/interchain-security/validators/withdraw_rewards",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Joining Replicated Security testnet",
+    "permalink": "/interchain-security/validators/joining-testnet"
+  },
+  "next": {
+    "title": "Frequently Asked Questions",
+    "permalink": "/interchain-security/faq"
+  }
+}

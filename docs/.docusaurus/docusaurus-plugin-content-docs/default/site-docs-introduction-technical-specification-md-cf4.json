@@ -1,0 +1,26 @@
+{
+  "unversionedId": "introduction/technical-specification",
+  "id": "introduction/technical-specification",
+  "title": "Technical Specification",
+  "description": "For a technical deep dive into the replicated security protocol, see the specification.",
+  "source": "@site/docs/introduction/technical-specification.md",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/technical-specification",
+  "permalink": "/interchain-security/introduction/technical-specification",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Interchain Security Parameters",
+    "permalink": "/interchain-security/introduction/params"
+  },
+  "next": {
+    "title": "Key Assignment",
+    "permalink": "/interchain-security/features/key-assignment"
+  }
+}

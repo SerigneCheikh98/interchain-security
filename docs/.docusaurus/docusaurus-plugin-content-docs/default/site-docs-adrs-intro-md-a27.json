@@ -1,0 +1,27 @@
+{
+  "unversionedId": "adrs/intro",
+  "id": "adrs/intro",
+  "title": "ADRs",
+  "description": "This is a location to record all high-level architecture decisions in the Interchain Security project.",
+  "source": "@site/docs/adrs/intro.md",
+  "sourceDirName": "adrs",
+  "slug": "/adrs/intro",
+  "permalink": "/interchain-security/adrs/intro",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "ADRs"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Frequently Asked Questions",
+    "permalink": "/interchain-security/faq"
+  },
+  "next": {
+    "title": "ADR Template",
+    "permalink": "/interchain-security/adrs/adr-template"
+  }
+}

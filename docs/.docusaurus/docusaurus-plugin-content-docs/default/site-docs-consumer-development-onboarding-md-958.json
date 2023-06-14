@@ -1,0 +1,27 @@
+{
+  "unversionedId": "consumer-development/onboarding",
+  "id": "consumer-development/onboarding",
+  "title": "Onboarding Checklist",
+  "description": "The following checklists will aid in onboarding a new consumer chain to replicated security.",
+  "source": "@site/docs/consumer-development/onboarding.md",
+  "sourceDirName": "consumer-development",
+  "slug": "/consumer-development/onboarding",
+  "permalink": "/interchain-security/consumer-development/onboarding",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "title": "Onboarding Checklist"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Upgrading Consumer Chains",
+    "permalink": "/interchain-security/consumer-development/consumer-chain-upgrade-procedure"
+  },
+  "next": {
+    "title": "Offboarding Checklist",
+    "permalink": "/interchain-security/consumer-development/offboarding"
+  }
+}

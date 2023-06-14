@@ -1,0 +1,26 @@
+{
+  "unversionedId": "introduction/overview",
+  "id": "introduction/overview",
+  "title": "Overview",
+  "description": "Replicated security (aka interchain security V1) is an open sourced IBC application which allows cosmos blockchains to lease their proof-of-stake security to one another.",
+  "source": "@site/docs/introduction/overview.md",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/overview",
+  "permalink": "/interchain-security/introduction/overview",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Interchain Security Docs",
+    "permalink": "/interchain-security/"
+  },
+  "next": {
+    "title": "Terminology",
+    "permalink": "/interchain-security/introduction/terminology"
+  }
+}

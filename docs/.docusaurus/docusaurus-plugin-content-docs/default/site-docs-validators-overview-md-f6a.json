@@ -1,0 +1,26 @@
+{
+  "unversionedId": "validators/overview",
+  "id": "validators/overview",
+  "title": "Overview",
+  "description": "We advise that you join the Replicated Security testnet to gain hands-on experience with running consumer chains.",
+  "source": "@site/docs/validators/overview.md",
+  "sourceDirName": "validators",
+  "slug": "/validators/overview",
+  "permalink": "/interchain-security/validators/overview",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Offboarding Checklist",
+    "permalink": "/interchain-security/consumer-development/offboarding"
+  },
+  "next": {
+    "title": "Joining Replicated Security testnet",
+    "permalink": "/interchain-security/validators/joining-testnet"
+  }
+}

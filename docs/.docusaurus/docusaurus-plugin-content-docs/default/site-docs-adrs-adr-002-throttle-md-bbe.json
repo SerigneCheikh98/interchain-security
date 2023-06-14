@@ -1,0 +1,27 @@
+{
+  "unversionedId": "adrs/adr-002-throttle",
+  "id": "adrs/adr-002-throttle",
+  "title": "Jail Throttling",
+  "description": "Changelog",
+  "source": "@site/docs/adrs/adr-002-throttle.md",
+  "sourceDirName": "adrs",
+  "slug": "/adrs/adr-002-throttle",
+  "permalink": "/interchain-security/adrs/adr-002-throttle",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Jail Throttling"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Key Assignment",
+    "permalink": "/interchain-security/adrs/adr-001-key-assignment"
+  },
+  "next": {
+    "title": "Equivocation governance proposal",
+    "permalink": "/interchain-security/adrs/adr-003-equivocation-gov-proposal"
+  }
+}

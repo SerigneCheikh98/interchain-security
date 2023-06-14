@@ -1,0 +1,27 @@
+{
+  "unversionedId": "adrs/adr-template",
+  "id": "adrs/adr-template",
+  "title": "ADR Template",
+  "description": "Changelog",
+  "source": "@site/docs/adrs/adr-template.md",
+  "sourceDirName": "adrs",
+  "slug": "/adrs/adr-template",
+  "permalink": "/interchain-security/adrs/adr-template",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "ADR Template"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ADRs",
+    "permalink": "/interchain-security/adrs/intro"
+  },
+  "next": {
+    "title": "Key Assignment",
+    "permalink": "/interchain-security/adrs/adr-001-key-assignment"
+  }
+}

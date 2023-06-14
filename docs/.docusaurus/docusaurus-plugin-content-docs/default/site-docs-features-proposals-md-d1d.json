@@ -1,0 +1,26 @@
+{
+  "unversionedId": "features/proposals",
+  "id": "features/proposals",
+  "title": "ICS Provider Proposals",
+  "description": "Interchain security module introduces 3 new proposal types to the provider.",
+  "source": "@site/docs/features/proposals.md",
+  "sourceDirName": "features",
+  "slug": "/features/proposals",
+  "permalink": "/interchain-security/features/proposals",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Reward distribution",
+    "permalink": "/interchain-security/features/reward-distribution"
+  },
+  "next": {
+    "title": "Consumer Initiated Slashing",
+    "permalink": "/interchain-security/features/slashing"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "unversionedId": "adrs/adr-003-equivocation-gov-proposal",
+  "id": "adrs/adr-003-equivocation-gov-proposal",
+  "title": "Equivocation governance proposal",
+  "description": "Changelog",
+  "source": "@site/docs/adrs/adr-003-equivocation-gov-proposal.md",
+  "sourceDirName": "adrs",
+  "slug": "/adrs/adr-003-equivocation-gov-proposal",
+  "permalink": "/interchain-security/adrs/adr-003-equivocation-gov-proposal",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "title": "Equivocation governance proposal"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Jail Throttling",
+    "permalink": "/interchain-security/adrs/adr-002-throttle"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/interchain-security/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/interchain-security/",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "adrs/adr-001-key-assignment",
+              "path": "/interchain-security/adrs/adr-001-key-assignment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "adrs/adr-002-throttle",
+              "path": "/interchain-security/adrs/adr-002-throttle",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "adrs/adr-003-equivocation-gov-proposal",
+              "path": "/interchain-security/adrs/adr-003-equivocation-gov-proposal",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "adrs/adr-template",
+              "path": "/interchain-security/adrs/adr-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "adrs/intro",
+              "path": "/interchain-security/adrs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "consumer-development/app-integration",
+              "path": "/interchain-security/consumer-development/app-integration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "consumer-development/consumer-chain-governance",
+              "path": "/interchain-security/consumer-development/consumer-chain-governance",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "consumer-development/consumer-chain-upgrade-procedure",
+              "path": "/interchain-security/consumer-development/consumer-chain-upgrade-procedure",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "consumer-development/offboarding",
+              "path": "/interchain-security/consumer-development/offboarding",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "consumer-development/onboarding",
+              "path": "/interchain-security/consumer-development/onboarding",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "features/key-assignment",
+              "path": "/interchain-security/features/key-assignment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "features/proposals",
+              "path": "/interchain-security/features/proposals",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "features/reward-distribution",
+              "path": "/interchain-security/features/reward-distribution",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "features/slashing",
+              "path": "/interchain-security/features/slashing",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "frequently-asked-questions",
+              "path": "/interchain-security/faq",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "index",
+              "path": "/interchain-security/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/overview",
+              "path": "/interchain-security/introduction/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/params",
+              "path": "/interchain-security/introduction/params",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/technical-specification",
+              "path": "/interchain-security/introduction/technical-specification",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/terminology",
+              "path": "/interchain-security/introduction/terminology",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "validators/joining-testnet",
+              "path": "/interchain-security/validators/joining-testnet",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "validators/overview",
+              "path": "/interchain-security/validators/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "validators/withdraw_rewards",
+              "path": "/interchain-security/validators/withdraw_rewards",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/interchain-security/",
+                "label": "index"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

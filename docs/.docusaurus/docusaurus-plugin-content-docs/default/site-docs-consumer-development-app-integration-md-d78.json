@@ -1,0 +1,26 @@
+{
+  "unversionedId": "consumer-development/app-integration",
+  "id": "consumer-development/app-integration",
+  "title": "Developing an ICS consumer chain",
+  "description": "When developing an ICS consumer chain, besides just focusing on your chain's logic you should aim to allocate time to ensure that your chain is compatible with the ICS protocol.",
+  "source": "@site/docs/consumer-development/app-integration.md",
+  "sourceDirName": "consumer-development",
+  "slug": "/consumer-development/app-integration",
+  "permalink": "/interchain-security/consumer-development/app-integration",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Consumer Initiated Slashing",
+    "permalink": "/interchain-security/features/slashing"
+  },
+  "next": {
+    "title": "Consumer Chain Governance",
+    "permalink": "/interchain-security/consumer-development/consumer-chain-governance"
+  }
+}

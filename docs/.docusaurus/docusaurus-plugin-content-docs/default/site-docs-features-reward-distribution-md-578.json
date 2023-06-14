@@ -1,0 +1,26 @@
+{
+  "unversionedId": "features/reward-distribution",
+  "id": "features/reward-distribution",
+  "title": "Reward distribution",
+  "description": "Consumer chains have the option of sharing their block rewards (inflation tokens) and fees with provider chain validators and delegators.",
+  "source": "@site/docs/features/reward-distribution.md",
+  "sourceDirName": "features",
+  "slug": "/features/reward-distribution",
+  "permalink": "/interchain-security/features/reward-distribution",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Key Assignment",
+    "permalink": "/interchain-security/features/key-assignment"
+  },
+  "next": {
+    "title": "ICS Provider Proposals",
+    "permalink": "/interchain-security/features/proposals"
+  }
+}

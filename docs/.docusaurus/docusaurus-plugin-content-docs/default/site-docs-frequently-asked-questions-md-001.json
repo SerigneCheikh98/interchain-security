@@ -1,0 +1,28 @@
+{
+  "unversionedId": "frequently-asked-questions",
+  "id": "frequently-asked-questions",
+  "title": "Frequently Asked Questions",
+  "description": "What is the meaning of Validator Set Replication?",
+  "source": "@site/docs/frequently-asked-questions.md",
+  "sourceDirName": ".",
+  "slug": "/faq",
+  "permalink": "/interchain-security/faq",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "Frequently Asked Questions",
+    "slug": "/faq"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Withdrawing consumer chain validator rewards",
+    "permalink": "/interchain-security/validators/withdraw_rewards"
+  },
+  "next": {
+    "title": "ADRs",
+    "permalink": "/interchain-security/adrs/intro"
+  }
+}

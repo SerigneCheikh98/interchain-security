@@ -1,0 +1,26 @@
+{
+  "unversionedId": "consumer-development/consumer-chain-upgrade-procedure",
+  "id": "consumer-development/consumer-chain-upgrade-procedure",
+  "title": "Upgrading Consumer Chains",
+  "description": "",
+  "source": "@site/docs/consumer-development/consumer-chain-upgrade-procedure.md",
+  "sourceDirName": "consumer-development",
+  "slug": "/consumer-development/consumer-chain-upgrade-procedure",
+  "permalink": "/interchain-security/consumer-development/consumer-chain-upgrade-procedure",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Consumer Chain Governance",
+    "permalink": "/interchain-security/consumer-development/consumer-chain-governance"
+  },
+  "next": {
+    "title": "Onboarding Checklist",
+    "permalink": "/interchain-security/consumer-development/onboarding"
+  }
+}
